@@ -18,6 +18,7 @@
       --muted:#c9c0b7;
       --gold:#d4a373;
       --mint:#86c6b4;
+      --rose:#bc6c7c;
       --line:rgba(255,255,255,0.12);
       --shadow:0 24px 70px rgba(0,0,0,0.38);
     }
@@ -28,19 +29,28 @@
       box-sizing:border-box;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       min-height:100vh;
       background:
-        linear-gradient(90deg,rgba(0,0,0,0.84),rgba(0,0,0,0.48)),
-        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920&auto=format&fit=crop') center/cover fixed,
-        var(--bg);
+        radial-gradient(circle at 10% 6%, rgba(134,198,180,0.14), transparent 30%),
+        linear-gradient(135deg,#101112 0%,#181313 48%,#0d0d0e 100%);
       color:var(--cream);
       font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
     }
 
     a{
       color:inherit;
       text-decoration:none;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
     }
 
     .container{
@@ -99,7 +109,31 @@
     }
 
     .menu-hero{
-      padding:82px 0 34px;
+      min-height:560px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      isolation:isolate;
+      padding:84px 0 46px;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,0.86),rgba(0,0,0,0.44),rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1920&auto=format&fit=crop') center/cover;
+    }
+
+    .menu-hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0;
+      height:150px;
+      background:linear-gradient(transparent,var(--bg));
+      z-index:-1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 360px;
+      gap:42px;
+      align-items:center;
     }
 
     .eyebrow{
@@ -149,13 +183,16 @@
       align-items:center;
       justify-content:center;
       min-height:50px;
-      padding:14px 30px;
+      padding:14px 28px;
       border-radius:999px;
       background:var(--gold);
       color:#101112;
       font-weight:700;
       box-shadow:0 14px 36px rgba(212,163,115,0.22);
       transition:0.3s;
+      border:0;
+      cursor:pointer;
+      font-family:inherit;
     }
 
     .btn.secondary{
@@ -165,102 +202,222 @@
       box-shadow:none;
     }
 
+    .btn.whatsapp{
+      background:#25d366;
+      color:#082113;
+      box-shadow:0 14px 36px rgba(37,211,102,0.16);
+    }
+
     .btn:hover{
       transform:translateY(-4px);
       background:var(--cream);
     }
 
-    .menu-layout{
-      display:grid;
-      grid-template-columns:minmax(0,0.9fr) minmax(420px,1.35fr);
-      gap:26px;
-      align-items:start;
-      padding:34px 0 86px;
+    .hero-card{
+      background:rgba(24,25,26,0.84);
+      border:1px solid var(--line);
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
-    .quick-menu,
-    .pdf-panel{
+    .hero-card img{
+      height:250px;
+      width:100%;
+      object-fit:cover;
+    }
+
+    .hero-card div{
+      padding:22px;
+    }
+
+    .hero-card strong{
+      display:block;
+      color:var(--gold);
+      font-size:22px;
+      margin-bottom:8px;
+    }
+
+    .hero-card p{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .visual-strip{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr 1fr 0.9fr;
+      gap:16px;
+      margin:54px auto 0;
+    }
+
+    .visual-strip img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      border:1px solid var(--line);
+      border-radius:8px;
+      box-shadow:var(--shadow);
+    }
+
+    .visual-strip img:nth-child(2){
+      margin-top:36px;
+      height:300px;
+    }
+
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(36px,5vw,56px);
+      color:var(--gold);
+      line-height:1;
+      letter-spacing:0;
+      margin-bottom:14px;
+    }
+
+    .section-copy{
+      max-width:720px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:28px;
+      margin:84px 0 32px;
+    }
+
+    .category-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .category-nav a{
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,0.04);
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .category-nav a:hover{
+      color:#101112;
+      background:var(--gold);
+    }
+
+    .menu-category{
+      padding:34px;
+      margin-bottom:24px;
       background:linear-gradient(180deg,rgba(32,33,36,0.94),rgba(24,25,26,0.94));
       border:1px solid var(--line);
       border-radius:8px;
       box-shadow:var(--shadow);
     }
 
-    .quick-menu{
-      padding:28px;
+    .category-header{
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:22px;
+      align-items:center;
+      margin-bottom:26px;
     }
 
-    .panel-title{
-      font-family:'Playfair Display',serif;
-      color:var(--gold);
-      font-size:34px;
-      line-height:1;
+    .category-header img{
+      width:120px;
+      height:120px;
+      object-fit:cover;
+      border-radius:8px;
+      border:1px solid var(--line);
+    }
+
+    .category-header h2{
+      color:var(--cream);
+      font-size:28px;
+      margin-bottom:8px;
+    }
+
+    .category-header p{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .item-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:16px;
+    }
+
+    .item-card{
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      min-height:220px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:8px;
+      background:rgba(255,255,255,0.045);
+      transition:0.3s;
+    }
+
+    .item-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(212,163,115,0.42);
+      background:rgba(255,255,255,0.07);
+    }
+
+    .item-top{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
       margin-bottom:10px;
     }
 
-    .panel-copy{
-      color:var(--muted);
-      line-height:1.8;
-      margin-bottom:24px;
-    }
-
-    .category{
-      padding:20px 0;
-      border-top:1px solid var(--line);
-    }
-
-    .category:first-of-type{
-      border-top:0;
-      padding-top:0;
-    }
-
-    .category h2{
-      display:flex;
-      justify-content:space-between;
-      gap:14px;
-      color:var(--cream);
+    .item-top h3{
       font-size:18px;
-      margin-bottom:14px;
-    }
-
-    .category h2 span{
-      color:var(--mint);
-      font-size:13px;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:0.12em;
-    }
-
-    .item{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:14px;
-      padding:12px 0;
-    }
-
-    .item + .item{
-      border-top:1px dashed rgba(255,255,255,0.12);
-    }
-
-    .item strong{
-      display:block;
       color:var(--cream);
-      margin-bottom:4px;
     }
 
-    .item p{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-
-    .item b{
+    .item-top b{
       color:var(--gold);
       white-space:nowrap;
     }
 
+    .item-card p{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .order-link{
+      align-self:end;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      min-height:42px;
+      border-radius:999px;
+      background:rgba(37,211,102,0.14);
+      color:#7df0a8;
+      border:1px solid rgba(37,211,102,0.28);
+      font-weight:700;
+      font-size:14px;
+      transition:0.3s;
+    }
+
+    .order-link:hover{
+      background:#25d366;
+      color:#082113;
+    }
+
     .pdf-panel{
+      margin:72px auto 90px;
       overflow:hidden;
+      background:linear-gradient(180deg,rgba(32,33,36,0.94),rgba(24,25,26,0.94));
+      border:1px solid var(--line);
+      border-radius:8px;
+      box-shadow:var(--shadow);
     }
 
     .pdf-topbar{
@@ -298,13 +455,33 @@
       line-height:1.8;
     }
 
-    @media(max-width:900px){
-      .menu-layout{
+    footer{
+      padding:42px 0;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.08);
+      background:#080808;
+    }
+
+    @media(max-width:980px){
+      .hero-grid,
+      .section-head{
         grid-template-columns:1fr;
+        display:grid;
       }
 
-      .pdf-frame{
-        height:640px;
+      .hero-card{
+        max-width:520px;
+      }
+
+      .visual-strip{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .visual-strip img,
+      .visual-strip img:nth-child(2){
+        height:240px;
+        margin-top:0;
       }
     }
 
@@ -318,7 +495,6 @@
       }
 
       .menu-hero{
-        padding-top:64px;
         text-align:center;
       }
 
@@ -334,13 +510,47 @@
         justify-content:center;
       }
 
-      .pdf-topbar{
-        align-items:flex-start;
-        flex-direction:column;
+      .hero-card{
+        display:none;
+      }
+
+      .section-head{
+        text-align:center;
+      }
+
+      .section-copy{
+        margin:auto;
+      }
+
+      .category-nav{
+        justify-content:center;
+      }
+
+      .menu-category{
+        padding:22px;
+      }
+
+      .category-header{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+
+      .category-header img{
+        width:100%;
+        height:220px;
+      }
+
+      .visual-strip{
+        grid-template-columns:1fr;
       }
 
       .pdf-frame{
         height:540px;
+      }
+
+      .pdf-topbar{
+        align-items:flex-start;
+        flex-direction:column;
       }
     }
   </style>
@@ -362,96 +572,220 @@
 
   <main>
     <section class="menu-hero">
-      <div class="container">
-        <div class="eyebrow">Full Cafe Menu</div>
-        <h1>Pick Your Next Favorite</h1>
-        <p class="lead">
-          Browse the official Al Mistkawy menu, then use the quick highlights for the most-requested drinks and desserts.
-        </p>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Full Cafe Menu</div>
+          <h1>Order Your Favorites Through WhatsApp</h1>
+          <p class="lead">
+            Browse drinks, waffles, desserts, and refreshers. Each item has a ready WhatsApp order message so guests can order faster.
+          </p>
 
-        <div class="actions">
-          <a class="btn" href="assets/menu.pdf" target="_blank" rel="noopener">Open PDF Menu</a>
-          <a class="btn secondary" href="index.html#contact">Order Now</a>
+          <div class="actions">
+            <a class="btn whatsapp" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+            <a class="btn secondary" href="assets/menu.pdf" target="_blank" rel="noopener">Open PDF Menu</a>
+          </div>
+        </div>
+
+        <article class="hero-card">
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=900&auto=format&fit=crop" alt="Cold fruit drink with ice">
+          <div>
+            <strong>Fresh, cold, and ready</strong>
+            <p>Use the green buttons below to send the item name directly in WhatsApp.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="container visual-strip" aria-label="Menu photos">
+      <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=900&auto=format&fit=crop" alt="Latte coffee">
+      <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=900&auto=format&fit=crop" alt="Waffle dessert">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=900&auto=format&fit=crop" alt="Coffee pour">
+      <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=900&auto=format&fit=crop" alt="Fresh mojito">
+    </div>
+
+    <section class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Menu Items</h2>
+          <p class="section-copy">
+            Item cards are grouped by category with direct WhatsApp ordering. The official PDF menu remains below for the full printed version.
+          </p>
+        </div>
+
+        <div class="category-nav" aria-label="Menu categories">
+          <a href="#coffee">Coffee</a>
+          <a href="#iced">Iced</a>
+          <a href="#mojito">Mojitos</a>
+          <a href="#dessert">Desserts</a>
+          <a href="#pdf">PDF</a>
+        </div>
+      </div>
+
+      <div class="menu-category" id="coffee">
+        <div class="category-header">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=700&auto=format&fit=crop" alt="Hot coffee cup">
+          <div>
+            <h2>Hot Coffee</h2>
+            <p>Classic espresso drinks and warm cafe favorites.</p>
+          </div>
+        </div>
+
+        <div class="item-grid">
+          <article class="item-card">
+            <div class="item-top"><h3>Espresso</h3><b>Ask</b></div>
+            <p>Short, bold coffee shot with a clean finish.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Espresso." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Americano</h3><b>Ask</b></div>
+            <p>Espresso softened with hot water.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Americano." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Cappuccino</h3><b>Ask</b></div>
+            <p>Espresso, steamed milk, and velvety foam.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Cappuccino." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Latte</h3><b>55 EGP</b></div>
+            <p>Rich espresso with creamy milk foam.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Mocha</h3><b>Ask</b></div>
+            <p>Espresso, milk, and chocolate notes.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Mocha." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Spanish Latte</h3><b>Ask</b></div>
+            <p>Smooth latte with a sweet creamy taste.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Spanish%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="menu-category" id="iced">
+        <div class="category-header">
+          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=700&auto=format&fit=crop" alt="Iced coffee">
+          <div>
+            <h2>Iced Coffee</h2>
+            <p>Cold espresso drinks built for sunny days and late nights.</p>
+          </div>
+        </div>
+
+        <div class="item-grid">
+          <article class="item-card">
+            <div class="item-top"><h3>Iced Americano</h3><b>Ask</b></div>
+            <p>Espresso over ice with a crisp coffee taste.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Americano." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Iced Latte</h3><b>Ask</b></div>
+            <p>Cold milk, espresso, and ice.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Iced Mocha</h3><b>Ask</b></div>
+            <p>Chocolate coffee served chilled.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Mocha." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Iced Spanish Latte</h3><b>Ask</b></div>
+            <p>Sweet creamy latte over ice.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Spanish%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="menu-category" id="mojito">
+        <div class="category-header">
+          <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=700&auto=format&fit=crop" alt="Mojito drink">
+          <div>
+            <h2>Mojitos & Refreshers</h2>
+            <p>Colorful fruit refreshers with ice, mint, and sparkling energy.</p>
+          </div>
+        </div>
+
+        <div class="item-grid">
+          <article class="item-card">
+            <div class="item-top"><h3>Blue Berry Mojito</h3><b>60 EGP</b></div>
+            <p>Refreshing mojito with fresh blueberry flavor.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Blue%20Berry%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Strawberry Mojito</h3><b>Ask</b></div>
+            <p>Sweet strawberry refresher with mint and ice.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Strawberry%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Passion Fruit Mojito</h3><b>Ask</b></div>
+            <p>Tropical, bright, and refreshing.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Passion%20Fruit%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Green Apple Mojito</h3><b>Ask</b></div>
+            <p>Crisp apple flavor with a fresh cold finish.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Green%20Apple%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Lemon Mint</h3><b>Ask</b></div>
+            <p>Fresh lemon and mint blended for a clean chill.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Lemon%20Mint." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="menu-category" id="dessert">
+        <div class="category-header">
+          <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=700&auto=format&fit=crop" alt="Waffle dessert">
+          <div>
+            <h2>Waffles & Desserts</h2>
+            <p>Sweet plates for sharing, finishing a drink, or treating yourself properly.</p>
+          </div>
+        </div>
+
+        <div class="item-grid">
+          <article class="item-card">
+            <div class="item-top"><h3>Oreo Waffle</h3><b>65 EGP</b></div>
+            <p>Crispy waffle topped with Oreo chocolate.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Oreo%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Chocolate Waffle</h3><b>Ask</b></div>
+            <p>Golden waffle covered with chocolate topping.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Chocolate%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Nutella Waffle</h3><b>Ask</b></div>
+            <p>Warm waffle with rich hazelnut chocolate.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Nutella%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
+          <article class="item-card">
+            <div class="item-top"><h3>Mix Waffle</h3><b>Ask</b></div>
+            <p>A loaded waffle with mixed toppings.</p>
+            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Mix%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="container menu-layout" aria-label="Al Mistkawy menu">
-      <aside class="quick-menu">
-        <h2 class="panel-title">Quick Picks</h2>
-        <p class="panel-copy">
-          A clean preview for guests who want the favorites fast. The embedded PDF on the right keeps the full menu available.
-        </p>
+    <section class="container pdf-panel" id="pdf">
+      <div class="pdf-topbar">
+        <h2>Official PDF Menu</h2>
+        <a href="assets/menu.pdf" target="_blank" rel="noopener">Open in new tab</a>
+      </div>
 
-        <div class="category">
-          <h2>Coffee <span>Hot</span></h2>
-          <div class="item">
-            <div>
-              <strong>Latte</strong>
-              <p>Rich espresso with creamy milk foam.</p>
-            </div>
-            <b>55 EGP</b>
-          </div>
-          <div class="item">
-            <div>
-              <strong>Signature Coffee</strong>
-              <p>A smooth house-style coffee for daily regulars.</p>
-            </div>
-            <b>Ask</b>
-          </div>
+      <object class="pdf-frame" data="assets/menu.pdf" type="application/pdf">
+        <div class="pdf-fallback">
+          Your browser cannot preview the PDF here.
+          <a href="assets/menu.pdf" target="_blank" rel="noopener">Open the menu PDF instead.</a>
         </div>
-
-        <div class="category">
-          <h2>Mojitos <span>Cold</span></h2>
-          <div class="item">
-            <div>
-              <strong>Blue Berry Mojito</strong>
-              <p>Refreshing mojito with fresh blueberry flavor.</p>
-            </div>
-            <b>60 EGP</b>
-          </div>
-          <div class="item">
-            <div>
-              <strong>Signature Mojito</strong>
-              <p>Bright, chilled, and made for a fresh finish.</p>
-            </div>
-            <b>Ask</b>
-          </div>
-        </div>
-
-        <div class="category">
-          <h2>Desserts <span>Sweet</span></h2>
-          <div class="item">
-            <div>
-              <strong>Oreo Waffle</strong>
-              <p>Crispy waffle topped with Oreo chocolate.</p>
-            </div>
-            <b>65 EGP</b>
-          </div>
-          <div class="item">
-            <div>
-              <strong>House Waffle</strong>
-              <p>Golden waffle with your favorite toppings.</p>
-            </div>
-            <b>Ask</b>
-          </div>
-        </div>
-      </aside>
-
-      <section class="pdf-panel">
-        <div class="pdf-topbar">
-          <h2>Official PDF Menu</h2>
-          <a href="assets/menu.pdf" target="_blank" rel="noopener">Open in new tab</a>
-        </div>
-
-        <object class="pdf-frame" data="assets/menu.pdf" type="application/pdf">
-          <div class="pdf-fallback">
-            Your browser cannot preview the PDF here.
-            <a href="assets/menu.pdf" target="_blank" rel="noopener">Open the menu PDF instead.</a>
-          </div>
-        </object>
-      </section>
+      </object>
     </section>
   </main>
+
+  <footer>
+    <div class="container">Al Mistkawy Cafe - order online through WhatsApp.</div>
+  </footer>
 </body>
 </html>
