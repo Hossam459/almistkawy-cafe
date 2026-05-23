@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | Al Mistkawy Cafe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#101112;
+      --panel:#18191a;
+      --panel-soft:#202124;
+      --cream:#f6efe6;
+      --muted:#c9c0b7;
+      --gold:#d4a373;
+      --mint:#86c6b4;
+      --line:rgba(255,255,255,0.12);
+      --shadow:0 24px 70px rgba(0,0,0,0.38);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,0.84),rgba(0,0,0,0.48)),
+        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920&auto=format&fit=crop') center/cover fixed,
+        var(--bg);
+      color:var(--cream);
+      font-family:'Poppins',sans-serif;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(10,10,10,0.76);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(16px);
+      padding:16px 0;
+    }
+
+    .nav-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .logo{
+      font-family:'Playfair Display',serif;
+      font-size:30px;
+      font-weight:700;
+      color:var(--gold);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:999px;
+      background:rgba(255,255,255,0.04);
+    }
+
+    .nav-links a{
+      padding:10px 15px;
+      border-radius:999px;
+      color:rgba(246,239,230,0.82);
+      font-size:14px;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active{
+      color:#101112;
+      background:var(--gold);
+    }
+
+    .menu-hero{
+      padding:82px 0 34px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:22px;
+      color:var(--mint);
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:38px;
+      height:1px;
+      background:var(--mint);
+    }
+
+    h1{
+      max-width:780px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(48px,8vw,88px);
+      line-height:0.96;
+      margin-bottom:22px;
+      letter-spacing:0;
+    }
+
+    .lead{
+      max-width:680px;
+      color:rgba(246,239,230,0.84);
+      font-size:19px;
+      line-height:1.8;
+      margin-bottom:32px;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:14px 30px;
+      border-radius:999px;
+      background:var(--gold);
+      color:#101112;
+      font-weight:700;
+      box-shadow:0 14px 36px rgba(212,163,115,0.22);
+      transition:0.3s;
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,0.08);
+      color:var(--cream);
+      border:1px solid rgba(255,255,255,0.22);
+      box-shadow:none;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      background:var(--cream);
+    }
+
+    .menu-layout{
+      display:grid;
+      grid-template-columns:minmax(0,0.9fr) minmax(420px,1.35fr);
+      gap:26px;
+      align-items:start;
+      padding:34px 0 86px;
+    }
+
+    .quick-menu,
+    .pdf-panel{
+      background:linear-gradient(180deg,rgba(32,33,36,0.94),rgba(24,25,26,0.94));
+      border:1px solid var(--line);
+      border-radius:8px;
+      box-shadow:var(--shadow);
+    }
+
+    .quick-menu{
+      padding:28px;
+    }
+
+    .panel-title{
+      font-family:'Playfair Display',serif;
+      color:var(--gold);
+      font-size:34px;
+      line-height:1;
+      margin-bottom:10px;
+    }
+
+    .panel-copy{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:24px;
+    }
+
+    .category{
+      padding:20px 0;
+      border-top:1px solid var(--line);
+    }
+
+    .category:first-of-type{
+      border-top:0;
+      padding-top:0;
+    }
+
+    .category h2{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      color:var(--cream);
+      font-size:18px;
+      margin-bottom:14px;
+    }
+
+    .category h2 span{
+      color:var(--mint);
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+
+    .item{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:14px;
+      padding:12px 0;
+    }
+
+    .item + .item{
+      border-top:1px dashed rgba(255,255,255,0.12);
+    }
+
+    .item strong{
+      display:block;
+      color:var(--cream);
+      margin-bottom:4px;
+    }
+
+    .item p{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .item b{
+      color:var(--gold);
+      white-space:nowrap;
+    }
+
+    .pdf-panel{
+      overflow:hidden;
+    }
+
+    .pdf-topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+    }
+
+    .pdf-topbar h2{
+      font-size:16px;
+      color:var(--cream);
+    }
+
+    .pdf-topbar a{
+      color:var(--gold);
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .pdf-frame{
+      width:100%;
+      height:760px;
+      border:0;
+      display:block;
+      background:#1f1f1f;
+    }
+
+    .pdf-fallback{
+      padding:26px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    @media(max-width:900px){
+      .menu-layout{
+        grid-template-columns:1fr;
+      }
+
+      .pdf-frame{
+        height:640px;
+      }
+    }
+
+    @media(max-width:768px){
+      .nav-links{
+        display:none;
+      }
+
+      .logo{
+        font-size:25px;
+      }
+
+      .menu-hero{
+        padding-top:64px;
+        text-align:center;
+      }
+
+      .eyebrow{
+        justify-content:center;
+      }
+
+      .eyebrow::before{
+        display:none;
+      }
+
+      .actions{
+        justify-content:center;
+      }
+
+      .pdf-topbar{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .pdf-frame{
+        height:540px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-content">
+      <a class="logo" href="index.html">Al Mistkawy</a>
+
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="menu.html" class="active">Menu</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="menu-hero">
+      <div class="container">
+        <div class="eyebrow">Full Cafe Menu</div>
+        <h1>Pick Your Next Favorite</h1>
+        <p class="lead">
+          Browse the official Al Mistkawy menu, then use the quick highlights for the most-requested drinks and desserts.
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="assets/menu.pdf" target="_blank" rel="noopener">Open PDF Menu</a>
+          <a class="btn secondary" href="index.html#contact">Order Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container menu-layout" aria-label="Al Mistkawy menu">
+      <aside class="quick-menu">
+        <h2 class="panel-title">Quick Picks</h2>
+        <p class="panel-copy">
+          A clean preview for guests who want the favorites fast. The embedded PDF on the right keeps the full menu available.
+        </p>
+
+        <div class="category">
+          <h2>Coffee <span>Hot</span></h2>
+          <div class="item">
+            <div>
+              <strong>Latte</strong>
+              <p>Rich espresso with creamy milk foam.</p>
+            </div>
+            <b>55 EGP</b>
+          </div>
+          <div class="item">
+            <div>
+              <strong>Signature Coffee</strong>
+              <p>A smooth house-style coffee for daily regulars.</p>
+            </div>
+            <b>Ask</b>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Mojitos <span>Cold</span></h2>
+          <div class="item">
+            <div>
+              <strong>Blue Berry Mojito</strong>
+              <p>Refreshing mojito with fresh blueberry flavor.</p>
+            </div>
+            <b>60 EGP</b>
+          </div>
+          <div class="item">
+            <div>
+              <strong>Signature Mojito</strong>
+              <p>Bright, chilled, and made for a fresh finish.</p>
+            </div>
+            <b>Ask</b>
+          </div>
+        </div>
+
+        <div class="category">
+          <h2>Desserts <span>Sweet</span></h2>
+          <div class="item">
+            <div>
+              <strong>Oreo Waffle</strong>
+              <p>Crispy waffle topped with Oreo chocolate.</p>
+            </div>
+            <b>65 EGP</b>
+          </div>
+          <div class="item">
+            <div>
+              <strong>House Waffle</strong>
+              <p>Golden waffle with your favorite toppings.</p>
+            </div>
+            <b>Ask</b>
+          </div>
+        </div>
+      </aside>
+
+      <section class="pdf-panel">
+        <div class="pdf-topbar">
+          <h2>Official PDF Menu</h2>
+          <a href="assets/menu.pdf" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+
+        <object class="pdf-frame" data="assets/menu.pdf" type="application/pdf">
+          <div class="pdf-fallback">
+            Your browser cannot preview the PDF here.
+            <a href="assets/menu.pdf" target="_blank" rel="noopener">Open the menu PDF instead.</a>
+          </div>
+        </object>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

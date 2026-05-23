@@ -2,29 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Al Mistkawy Cafe</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --bg:#101112;
+      --panel:#18191a;
+      --panel-soft:#202124;
+      --cream:#f6efe6;
+      --muted:#c9c0b7;
+      --gold:#d4a373;
+      --mint:#86c6b4;
+      --line:rgba(255,255,255,0.12);
+      --shadow:0 24px 70px rgba(0,0,0,0.38);
+    }
+
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
     }
 
     body{
-      background:#0f0f0f;
-      color:white;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(134,198,180,0.13), transparent 28%),
+        linear-gradient(135deg, #101112 0%, #171313 45%, #0d0d0e 100%);
+      color:var(--cream);
       overflow-x:hidden;
+      font-family:'Poppins',sans-serif;
     }
 
     a{
+      color:inherit;
       text-decoration:none;
-      color:white;
     }
 
     .container{
@@ -33,17 +52,16 @@
       margin:auto;
     }
 
-    /* NAVBAR */
-
     nav{
       position:fixed;
       width:100%;
       top:0;
       left:0;
       z-index:1000;
-      background:rgba(0,0,0,0.7);
-      backdrop-filter:blur(10px);
-      padding:20px 0;
+      background:rgba(10,10,10,0.72);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(16px);
+      padding:16px 0;
     }
 
     .nav-content{
@@ -53,101 +71,204 @@
     }
 
     .logo{
-      font-size:28px;
+      font-family:'Playfair Display',serif;
+      font-size:30px;
       font-weight:700;
-      color:#d4a373;
+      color:var(--gold);
+      letter-spacing:0;
     }
 
     .nav-links{
       display:flex;
-      gap:30px;
+      gap:8px;
+      align-items:center;
+      padding:5px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:999px;
+      background:rgba(255,255,255,0.04);
     }
 
     .nav-links a{
+      padding:10px 15px;
+      border-radius:999px;
+      color:rgba(246,239,230,0.82);
+      font-size:14px;
+      font-weight:500;
       transition:0.3s;
     }
 
     .nav-links a:hover{
-      color:#d4a373;
+      color:#101112;
+      background:var(--gold);
     }
 
-    /* HERO */
-
     .hero{
-      height:100vh;
+      min-height:100vh;
       background:
-      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1920&auto=format&fit=crop');
+        linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.46), rgba(0,0,0,0.64)),
+        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1920&auto=format&fit=crop');
       background-size:cover;
       background-position:center;
       display:flex;
       align-items:center;
-      text-align:center;
+      text-align:left;
+      position:relative;
+      padding:150px 0 80px;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0;
+      height:180px;
+      background:linear-gradient(transparent,var(--bg));
+      pointer-events:none;
     }
 
     .hero-content{
-      width:100%;
+      width:min(720px,100%);
+      position:relative;
+      z-index:1;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:22px;
+      color:var(--mint);
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:38px;
+      height:1px;
+      background:var(--mint);
     }
 
     .hero h1{
-      font-size:70px;
-      margin-bottom:20px;
-      color:#fff;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(48px,8vw,92px);
+      line-height:0.95;
+      margin-bottom:24px;
+      color:var(--cream);
+      letter-spacing:0;
+      max-width:760px;
     }
 
     .hero p{
-      color:#ddd;
+      color:rgba(246,239,230,0.82);
       font-size:20px;
-      margin-bottom:40px;
+      line-height:1.7;
+      margin-bottom:34px;
+      max-width:600px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:48px;
     }
 
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
       padding:14px 35px;
-      background:#d4a373;
-      color:black;
+      background:var(--gold);
+      color:#101112;
       border-radius:50px;
       font-weight:600;
       transition:0.3s;
-      margin:10px;
+      box-shadow:0 14px 36px rgba(212,163,115,0.22);
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,0.08);
+      color:var(--cream);
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow:none;
     }
 
     .btn:hover{
       transform:translateY(-5px);
-      background:white;
+      background:var(--cream);
     }
 
-    /* SECTION */
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(120px,1fr));
+      gap:14px;
+      max-width:650px;
+    }
+
+    .stat{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.07);
+      backdrop-filter:blur(14px);
+      border-radius:8px;
+      padding:18px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:26px;
+      color:var(--gold);
+      margin-bottom:4px;
+    }
+
+    .stat span{
+      color:rgba(246,239,230,0.76);
+      font-size:13px;
+    }
 
     section{
-      padding:100px 0;
+      padding:110px 0;
+      position:relative;
     }
 
     .section-title{
       text-align:center;
-      font-size:40px;
-      margin-bottom:60px;
-      color:#d4a373;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(36px,5vw,56px);
+      margin-bottom:18px;
+      color:var(--gold);
+      letter-spacing:0;
     }
 
-    /* MENU */
+    .section-subtitle{
+      max-width:640px;
+      margin:0 auto 54px;
+      text-align:center;
+      color:var(--muted);
+      line-height:1.8;
+    }
 
     .menu-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
+      gap:24px;
     }
 
     .menu-card{
-      background:#1b1b1b;
-      border-radius:20px;
+      background:linear-gradient(180deg,var(--panel-soft),var(--panel));
+      border-radius:8px;
       overflow:hidden;
       transition:0.4s;
-      border:1px solid rgba(255,255,255,0.05);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
     }
 
     .menu-card:hover{
       transform:translateY(-10px);
+      border-color:rgba(212,163,115,0.45);
     }
 
     .menu-card img{
@@ -162,20 +283,25 @@
 
     .menu-content h3{
       margin-bottom:10px;
-      color:#fff;
+      color:var(--cream);
+      font-size:22px;
+    }
+
+    .menu-content p{
+      min-height:56px;
+      color:var(--muted);
+      line-height:1.7;
     }
 
     .price{
-      color:#d4a373;
+      color:var(--gold);
       font-size:20px;
       font-weight:bold;
       margin-top:10px;
     }
 
-    /* ABOUT */
-
     .about{
-      background:#151515;
+      background:linear-gradient(135deg,#151515,#1a1715);
     }
 
     .about-content{
@@ -187,21 +313,50 @@
 
     .about img{
       width:100%;
-      border-radius:20px;
+      min-height:460px;
+      object-fit:cover;
+      border-radius:8px;
+      box-shadow:var(--shadow);
     }
 
     .about-text h2{
-      font-size:45px;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(38px,5vw,58px);
       margin-bottom:20px;
-      color:#d4a373;
+      color:var(--gold);
+      line-height:1;
     }
 
     .about-text p{
-      color:#ccc;
+      color:var(--muted);
       line-height:1.8;
+      margin-bottom:26px;
     }
 
-    /* TESTIMONIALS */
+    .features{
+      display:grid;
+      gap:12px;
+    }
+
+    .feature{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color:var(--cream);
+      font-weight:500;
+    }
+
+    .feature span{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      background:rgba(134,198,180,0.16);
+      color:var(--mint);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+    }
 
     .testimonials{
       text-align:center;
@@ -210,94 +365,170 @@
     .testimonial-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:30px;
+      gap:24px;
     }
 
     .testimonial{
-      background:#1a1a1a;
+      background:var(--panel);
       padding:30px;
-      border-radius:20px;
+      border-radius:8px;
+      border:1px solid var(--line);
+      text-align:left;
+      min-height:180px;
+    }
+
+    .testimonial p{
+      color:var(--muted);
+      line-height:1.8;
     }
 
     .stars{
-      color:gold;
+      color:var(--gold);
       margin-bottom:15px;
+      letter-spacing:2px;
     }
 
-    /* FOOTER */
+    .gallery-strip{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr 1fr;
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .gallery-strip img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:8px;
+      border:1px solid var(--line);
+    }
+
+    .gallery-strip img:nth-child(2){
+      height:380px;
+      margin-top:-30px;
+    }
 
     footer{
       background:#080808;
-      padding:40px 0;
+      padding:56px 0;
       text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
     }
 
     footer p{
       color:#888;
     }
 
+    footer h2{
+      margin-bottom:20px;
+      color:var(--gold);
+      font-family:'Playfair Display',serif;
+      font-size:36px;
+      letter-spacing:0;
+    }
+
     @media(max-width:768px){
-
-      .hero h1{
-        font-size:45px;
-      }
-
       .nav-links{
         display:none;
       }
 
+      .logo{
+        font-size:25px;
+      }
+
+      .hero{
+        text-align:center;
+        padding-top:130px;
+      }
+
+      .eyebrow{
+        justify-content:center;
+      }
+
+      .eyebrow::before{
+        display:none;
+      }
+
+      .hero-actions{
+        justify-content:center;
+      }
+
+      .hero-stats,
       .about-content{
         grid-template-columns:1fr;
       }
 
-    }
+      .about img{
+        min-height:320px;
+      }
 
+      .gallery-strip{
+        grid-template-columns:1fr;
+      }
+
+      .gallery-strip img,
+      .gallery-strip img:nth-child(2){
+        height:260px;
+        margin-top:0;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-
   <nav>
     <div class="container nav-content">
       <div class="logo">Al Mistkawy</div>
 
       <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Menu</a>
-        <a href="#">About</a>
-        <a href="#">Gallery</a>
-        <a href="#">Contact</a>
+        <a href="#home">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="container hero-content">
-      <h1>Crafted Especially For You ☕</h1>
+      <div class="eyebrow">Al Mistkawy Cafe</div>
+
+      <h1>Crafted Especially For You</h1>
 
       <p>
-        Premium Coffee, Mojitos, Waffles & Signature Drinks
+        Premium coffee, chilled mojitos, golden waffles, and signature drinks served in a warm modern atmosphere.
       </p>
 
-      <a href="#" class="btn">View Menu</a>
-      <a href="#" class="btn">Order Now</a>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn">View Menu</a>
+        <a href="#contact" class="btn secondary">Order Now</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>2023</strong>
+          <span>Serving since</span>
+        </div>
+        <div class="stat">
+          <strong>30+</strong>
+          <span>Signature picks</span>
+        </div>
+        <div class="stat">
+          <strong>4.9</strong>
+          <span>Guest rating</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- MENU -->
-
-  <section>
+  <section id="menu">
     <div class="container">
-
       <h2 class="section-title">Popular Drinks</h2>
+      <p class="section-subtitle">A few guest favorites from the counter: balanced espresso, bright fruit refreshers, and desserts made for late-night cravings.</p>
 
       <div class="menu-grid">
-
         <div class="menu-card">
-          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=1000&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=1000&auto=format&fit=crop" alt="Hot latte in a ceramic cup">
 
           <div class="menu-content">
             <h3>Latte</h3>
@@ -307,7 +538,7 @@
         </div>
 
         <div class="menu-card">
-          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=1000&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=1000&auto=format&fit=crop" alt="Blueberry iced mojito">
 
           <div class="menu-content">
             <h3>Blue Berry Mojito</h3>
@@ -317,7 +548,7 @@
         </div>
 
         <div class="menu-card">
-          <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?q=80&w=1000&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?q=80&w=1000&auto=format&fit=crop" alt="Oreo waffle dessert">
 
           <div class="menu-content">
             <h3>Oreo Waffle</h3>
@@ -325,22 +556,15 @@
             <div class="price">65 EGP</div>
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
 
-  <!-- ABOUT -->
-
-  <section class="about">
-
+  <section class="about" id="about">
     <div class="container about-content">
-
-      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop" alt="Warm modern cafe interior">
 
       <div class="about-text">
-
         <h2>More Than Just Coffee</h2>
 
         <p>
@@ -349,66 +573,59 @@
           modern atmosphere.
         </p>
 
+        <div class="features">
+          <div class="feature"><span>&check;</span> Fresh espresso and specialty cold drinks</div>
+          <div class="feature"><span>&check;</span> Waffles, desserts, and shareable plates</div>
+          <div class="feature"><span>&check;</span> Comfortable space for friends and quick breaks</div>
+        </div>
       </div>
-
     </div>
-
   </section>
 
-  <!-- TESTIMONIALS -->
-
-  <section class="testimonials">
-
+  <section class="testimonials" id="gallery">
     <div class="container">
-
       <h2 class="section-title">What Customers Say</h2>
+      <p class="section-subtitle">Simple things done well: fast service, generous flavors, and a place that feels easy to come back to.</p>
 
       <div class="testimonial-grid">
-
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
           <p>
             Best iced coffee in town. Amazing atmosphere and great service.
           </p>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
           <p>
             The mojitos and waffles are incredible. Highly recommended!
           </p>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars">&starf;&starf;&starf;&starf;&starf;</div>
           <p>
             Elegant place with premium quality drinks and desserts.
           </p>
         </div>
-
       </div>
 
+      <div class="gallery-strip">
+        <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1000&auto=format&fit=crop" alt="Cafe counter with warm lighting">
+        <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=1000&auto=format&fit=crop" alt="Fresh waffle dessert">
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1000&auto=format&fit=crop" alt="Coffee being poured">
+      </div>
     </div>
-
   </section>
 
-  <!-- FOOTER -->
-
-  <footer>
-
+  <footer id="contact">
     <div class="container">
-
-      <h2 style="margin-bottom:20px;color:#d4a373;">
-        Follow Us @ELMISTKAWY.EG
-      </h2>
+      <h2>Follow Us @ELMISTKAWY.EG</h2>
 
       <p>
-        © 2026 Al Mistkawy Cafe — All Rights Reserved
+        &copy; 2026 Al Mistkawy Cafe - All Rights Reserved
       </p>
-
     </div>
-
   </footer>
-
 </body>
 </html>
