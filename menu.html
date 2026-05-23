@@ -367,11 +367,47 @@
       background:rgba(255,255,255,0.07);
     }
 
+    .item-image-link{
+      display:block;
+      position:relative;
+      height:150px;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      background:linear-gradient(135deg,rgba(212,163,115,0.18),rgba(134,198,180,0.12));
+    }
+
     .item-card img{
       width:100%;
       height:150px;
       object-fit:cover;
-      border-bottom:1px solid rgba(255,255,255,0.1);
+      transition:0.3s;
+      background:rgba(255,255,255,0.06);
+    }
+
+    .item-image-link:hover img{
+      transform:scale(1.05);
+    }
+
+    .item-image-label{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      z-index:1;
+      display:inline-flex;
+      width:max-content;
+      max-width:calc(100% - 24px);
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.62);
+      color:var(--cream);
+      font-size:12px;
+      font-weight:700;
+      line-height:1.2;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      backdrop-filter:blur(8px);
     }
 
     .item-body{
@@ -599,6 +635,7 @@
         align-items:flex-start;
         flex-direction:column;
       }
+
     }
   </style>
 </head>
@@ -700,6 +737,7 @@
 
   <script>
     const orderPhone = "201279822194";
+
     const menuImages = {
       milk: "https://images.unsplash.com/photo-1553787499-6f9133860278?q=80&w=900&auto=format&fit=crop",
       juice: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=900&auto=format&fit=crop",
@@ -711,6 +749,129 @@
       softDrink: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=900&auto=format&fit=crop",
       addition: "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=900&auto=format&fit=crop",
       cuisine: "https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=900&auto=format&fit=crop"
+    };
+
+    // Real Unsplash images per item
+    const itemImages = {
+      // Milk drinks
+      "Milk Kiwi": "https://images.unsplash.com/photo-1638176066670-f4b850a3d41d?q=80&w=900&auto=format&fit=crop",
+      "Milk Mango": "https://images.unsplash.com/photo-1553530666-ba11a90a3fd1?q=80&w=900&auto=format&fit=crop",
+      "Milk Oreo": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=900&auto=format&fit=crop",
+      "Milk Passion Fruit": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=900&auto=format&fit=crop",
+      "Milk Vanilla": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=900&auto=format&fit=crop",
+      "Milk Chocolate": "https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=900&auto=format&fit=crop",
+      "Milk Blue Berry": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?q=80&w=900&auto=format&fit=crop",
+      "Milk Peach": "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=900&auto=format&fit=crop",
+      "Milk Pineapple": "https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?q=80&w=900&auto=format&fit=crop",
+      "Milk Strawberry": "https://images.unsplash.com/photo-1553787499-6f9133860278?q=80&w=900&auto=format&fit=crop",
+      "Milk Banana": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=900&auto=format&fit=crop",
+
+      // Fresh Juice
+      "Dates Milk": "https://images.unsplash.com/photo-1638176066670-f4b850a3d41d?q=80&w=900&auto=format&fit=crop",
+      "Guava Milk": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?q=80&w=900&auto=format&fit=crop",
+      "Strawberry Milk": "https://images.unsplash.com/photo-1553787499-6f9133860278?q=80&w=900&auto=format&fit=crop",
+      "Mango": "https://images.unsplash.com/photo-1559181567-c3190f82fb01?q=80&w=900&auto=format&fit=crop",
+      "Lemon Mint": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?q=80&w=900&auto=format&fit=crop",
+      "Orange": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=900&auto=format&fit=crop",
+
+      // Ice Coffee
+      "Ice Coffee": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=900&auto=format&fit=crop",
+      "Ice Latte": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=900&auto=format&fit=crop",
+      "Ice Chocolate": "https://images.unsplash.com/photo-1638176066670-f4b850a3d41d?q=80&w=900&auto=format&fit=crop",
+      "Ice Mocca": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=900&auto=format&fit=crop",
+      "American Coffee": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=900&auto=format&fit=crop",
+      "Frappuccino": "https://images.unsplash.com/photo-1579865428476-8f07dc0e6200?q=80&w=900&auto=format&fit=crop",
+
+      // Hot Drinks
+      "Coffee Mix": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=900&auto=format&fit=crop",
+      "Green Tea": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=900&auto=format&fit=crop",
+      "Tea": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=900&auto=format&fit=crop",
+      "Nescafe": "https://images.unsplash.com/photo-1572119865084-43c285814d63?q=80&w=900&auto=format&fit=crop",
+      "Nescafe Milk": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=900&auto=format&fit=crop",
+      "Mocha": "https://images.unsplash.com/photo-1534687941688-651ccaafbff8?q=80&w=900&auto=format&fit=crop",
+      "Latte": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?q=80&w=900&auto=format&fit=crop",
+      "Cappuccino": "https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?q=80&w=900&auto=format&fit=crop",
+      "Single Espresso": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=900&auto=format&fit=crop",
+      "Double Espresso": "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=900&auto=format&fit=crop",
+      "Hazelnut Coffee": "https://images.unsplash.com/photo-1580933073521-dc49ac0d4e6a?q=80&w=900&auto=format&fit=crop",
+      "Turkish Coffee": "https://images.unsplash.com/photo-1569577578929-6c9df4fa4b1d?q=80&w=900&auto=format&fit=crop",
+      "Seasoned Turkish Coffee": "https://images.unsplash.com/photo-1609590981063-d495b1f8f63a?q=80&w=900&auto=format&fit=crop",
+      "Dark Turkish Coffee": "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=900&auto=format&fit=crop",
+
+      // Coffee Specials (duplicates with same/similar images)
+      "Espresso Single": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=900&auto=format&fit=crop",
+      "Espresso Double": "https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=900&auto=format&fit=crop",
+      "Nescafe Black": "https://images.unsplash.com/photo-1572119865084-43c285814d63?q=80&w=900&auto=format&fit=crop",
+      "Coffee Hazelnut": "https://images.unsplash.com/photo-1580933073521-dc49ac0d4e6a?q=80&w=900&auto=format&fit=crop",
+      "French Coffee": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=900&auto=format&fit=crop",
+      "Spiced Coffee": "https://images.unsplash.com/photo-1609590981063-d495b1f8f63a?q=80&w=900&auto=format&fit=crop",
+
+      // Additions
+      "Syrup": "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?q=80&w=900&auto=format&fit=crop",
+      "Oreo": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=900&auto=format&fit=crop",
+      "Nutella": "https://images.unsplash.com/photo-1515024040-8598bd7e5ba9?q=80&w=900&auto=format&fit=crop",
+      "Ice Cream": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?q=80&w=900&auto=format&fit=crop",
+      "Whipping Cream": "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=900&auto=format&fit=crop",
+
+      // Smoothies
+      "Smothe Mix": "https://images.unsplash.com/photo-1553530666-ba11a90a3fd1?q=80&w=900&auto=format&fit=crop",
+      "Smothe Strawberry": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=900&auto=format&fit=crop",
+      "Smothe Water Melon": "https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?q=80&w=900&auto=format&fit=crop",
+      "Smothe Peach": "https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=900&auto=format&fit=crop",
+      "Smothe Mango": "https://images.unsplash.com/photo-1546171753-97d7676e4602?q=80&w=900&auto=format&fit=crop",
+      "Smothe Pineapple": "https://images.unsplash.com/photo-1490885578174-acda8905c2c6?q=80&w=900&auto=format&fit=crop",
+      "Smothe Blue Berry": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?q=80&w=900&auto=format&fit=crop",
+      "Smothe Passion Fruit": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=900&auto=format&fit=crop",
+      "Smothe Lemon Mint": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?q=80&w=900&auto=format&fit=crop",
+
+      // Mojito
+      "Mojito Mix": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=900&auto=format&fit=crop",
+      "Mojito Strawberry": "https://images.unsplash.com/photo-1609803384069-19f3ce920fae?q=80&w=900&auto=format&fit=crop",
+      "Mojito Watermelon": "https://images.unsplash.com/photo-1587802507265-c2e3e2c3cf5c?q=80&w=900&auto=format&fit=crop",
+      "Mojito Peach": "https://images.unsplash.com/photo-1560508180-03f285f67ded?q=80&w=900&auto=format&fit=crop",
+      "Mojito Novel (Pomegranate)": "https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e?q=80&w=900&auto=format&fit=crop",
+      "Mojito Pineapple": "https://images.unsplash.com/photo-1587405669665-f7172c9e5d06?q=80&w=900&auto=format&fit=crop",
+      "Mojito Blue Berry": "https://images.unsplash.com/photo-1570544820459-58b1bcd88b21?q=80&w=900&auto=format&fit=crop",
+      "Mojito Kiwi": "https://images.unsplash.com/photo-1638176066670-f4b850a3d41d?q=80&w=900&auto=format&fit=crop",
+
+      // Waffles
+      "Waffle Chocolate": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=900&auto=format&fit=crop",
+      "Waffle Lotus": "https://images.unsplash.com/photo-1598214886806-c2b4b4cd5919?q=80&w=900&auto=format&fit=crop",
+      "Waffle Oreo": "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?q=80&w=900&auto=format&fit=crop",
+      "Waffle Banana": "https://images.unsplash.com/photo-1484723091739-30990a701d3a?q=80&w=900&auto=format&fit=crop",
+      "Waffle Mix Chocolate": "https://images.unsplash.com/photo-1515516969-d4008cc6241a?q=80&w=900&auto=format&fit=crop",
+      "Waffle Pistachio": "https://images.unsplash.com/photo-1558024920-b41e1887dc32?q=80&w=900&auto=format&fit=crop",
+
+      // Soft Drinks
+      "Red Ball": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=900&auto=format&fit=crop",
+      "Birell": "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=900&auto=format&fit=crop",
+      "Fairoz": "https://images.unsplash.com/photo-1574096079513-d8259312b785?q=80&w=900&auto=format&fit=crop",
+      "Twiest": "https://images.unsplash.com/photo-1527960471264-932f39eb5846?q=80&w=900&auto=format&fit=crop",
+      "Cola": "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=900&auto=format&fit=crop",
+      "Pepsi": "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=900&auto=format&fit=crop",
+      "Sprite": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?q=80&w=900&auto=format&fit=crop",
+      "Sting": "https://images.unsplash.com/photo-1622543925917-763c34d1a86e?q=80&w=900&auto=format&fit=crop",
+      "Water Small": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=900&auto=format&fit=crop",
+      "Water Large": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=900&auto=format&fit=crop",
+
+      // Signature Cuisine
+      "كبدة صغير": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=900&auto=format&fit=crop",
+      "سجق صغير": "https://images.unsplash.com/photo-1612392166886-ee8475b03af2?q=80&w=900&auto=format&fit=crop",
+      "شاورما صغير": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=900&auto=format&fit=crop",
+      "وجبة كبدة": "https://images.unsplash.com/photo-1484723091739-30990a701d3a?q=80&w=900&auto=format&fit=crop",
+      "وجبة شيش": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=900&auto=format&fit=crop",
+      "وجبة استربس": "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=900&auto=format&fit=crop",
+      "مجدم بطاطس": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=900&auto=format&fit=crop",
+      "دبل برجر بطاطس": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=900&auto=format&fit=crop",
+      "تشيز برجر بطاطس": "https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=900&auto=format&fit=crop",
+      "استربس": "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=900&auto=format&fit=crop",
+      "شيش": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=900&auto=format&fit=crop",
+      "هوت دوج": "https://images.unsplash.com/photo-1612392166886-ee8475b03af2?q=80&w=900&auto=format&fit=crop",
+      "شاورما": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=900&auto=format&fit=crop",
+      "كبدة": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=900&auto=format&fit=crop",
+      "بطاطس": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=900&auto=format&fit=crop",
+      "بطاطس موتزريلا": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=900&auto=format&fit=crop",
+      "بانيه": "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=900&auto=format&fit=crop"
     };
 
     const menuData = [
@@ -918,6 +1079,11 @@
       return `https://wa.me/${orderPhone}?text=${encodeURIComponent(message)}`;
     };
 
+    // Get real image URL for item, fallback to category image
+    const itemImage = (name, category) => {
+      return itemImages[name] || category.image;
+    };
+
     const categoryNav = document.getElementById("categoryNav");
     const menuCategories = document.getElementById("menuCategories");
     const menuCount = document.getElementById("menuCount");
@@ -938,9 +1104,15 @@
           </div>
         </div>
         <div class="item-grid">
-          ${category.items.map(([name, price, description]) => `
+          ${category.items.map(([name, price, description]) => {
+            const imageUrl = itemImage(name, category);
+
+            return `
             <article class="item-card">
-              <img src="${category.image}" alt="${escapeHtml(name)}">
+              <a class="item-image-link" href="${imageUrl}" target="_blank" rel="noopener" aria-label="Open image for ${escapeHtml(name)}">
+                <img src="${imageUrl}" alt="${escapeHtml(name)}" loading="lazy" decoding="async">
+                <span class="item-image-label">${escapeHtml(name)}</span>
+              </a>
               <div class="item-body">
                 <div class="item-top">
                   <h3>${escapeHtml(name)}</h3>
@@ -950,7 +1122,8 @@
                 <a class="order-link" href="${orderHref(name, price)}" target="_blank" rel="noopener">Order on WhatsApp</a>
               </div>
             </article>
-          `).join("")}
+          `;
+          }).join("")}
         </div>
       </div>
     `).join("");
