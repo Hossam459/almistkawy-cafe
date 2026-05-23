@@ -352,12 +352,12 @@
 
     .item-card{
       display:grid;
-      grid-template-rows:auto 1fr auto;
-      min-height:220px;
-      padding:18px;
+      grid-template-rows:150px 1fr;
+      min-height:360px;
       border:1px solid rgba(255,255,255,0.1);
       border-radius:8px;
       background:rgba(255,255,255,0.045);
+      overflow:hidden;
       transition:0.3s;
     }
 
@@ -365,6 +365,19 @@
       transform:translateY(-5px);
       border-color:rgba(212,163,115,0.42);
       background:rgba(255,255,255,0.07);
+    }
+
+    .item-card img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .item-body{
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      padding:18px;
     }
 
     .item-top{
@@ -382,6 +395,13 @@
     .item-top b{
       color:var(--gold);
       white-space:nowrap;
+    }
+
+    .menu-count{
+      color:var(--mint);
+      font-size:14px;
+      font-weight:700;
+      margin-top:12px;
     }
 
     .item-card p{
@@ -409,6 +429,33 @@
     .order-link:hover{
       background:#25d366;
       color:#082113;
+    }
+
+    .contact-strip{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+      margin:28px 0 0;
+    }
+
+    .contact-box{
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:rgba(255,255,255,0.045);
+    }
+
+    .contact-box span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .contact-box a{
+      color:var(--gold);
+      font-size:18px;
+      font-weight:700;
     }
 
     .pdf-panel{
@@ -581,7 +628,7 @@
           </p>
 
           <div class="actions">
-            <a class="btn whatsapp" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+            <a class="btn whatsapp" href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
             <a class="btn secondary" href="assets/menu.pdf" target="_blank" rel="noopener">Open PDF Menu</a>
           </div>
         </div>
@@ -603,168 +650,29 @@
       <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=900&auto=format&fit=crop" alt="Fresh mojito">
     </div>
 
-    <section class="container">
+    <section class="container full-menu">
       <div class="section-head">
         <div>
-          <h2 class="section-title">Menu Items</h2>
+          <h2 class="section-title">Full PDF Menu</h2>
           <p class="section-copy">
-            Item cards are grouped by category with direct WhatsApp ordering. The official PDF menu remains below for the full printed version.
+            All items from the printed menu are listed with photos, prices, and direct WhatsApp ordering.
           </p>
+          <div class="menu-count" id="menuCount"></div>
         </div>
 
-        <div class="category-nav" aria-label="Menu categories">
-          <a href="#coffee">Coffee</a>
-          <a href="#iced">Iced</a>
-          <a href="#mojito">Mojitos</a>
-          <a href="#dessert">Desserts</a>
-          <a href="#pdf">PDF</a>
-        </div>
+        <div class="category-nav" id="categoryNav" aria-label="Menu categories"></div>
       </div>
 
-      <div class="menu-category" id="coffee">
-        <div class="category-header">
-          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=700&auto=format&fit=crop" alt="Hot coffee cup">
-          <div>
-            <h2>Hot Coffee</h2>
-            <p>Classic espresso drinks and warm cafe favorites.</p>
-          </div>
-        </div>
+      <div id="menuCategories"></div>
 
-        <div class="item-grid">
-          <article class="item-card">
-            <div class="item-top"><h3>Espresso</h3><b>Ask</b></div>
-            <p>Short, bold coffee shot with a clean finish.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Espresso." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Americano</h3><b>Ask</b></div>
-            <p>Espresso softened with hot water.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Americano." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Cappuccino</h3><b>Ask</b></div>
-            <p>Espresso, steamed milk, and velvety foam.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Cappuccino." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Latte</h3><b>55 EGP</b></div>
-            <p>Rich espresso with creamy milk foam.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Mocha</h3><b>Ask</b></div>
-            <p>Espresso, milk, and chocolate notes.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Mocha." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Spanish Latte</h3><b>Ask</b></div>
-            <p>Smooth latte with a sweet creamy taste.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Spanish%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
+      <div class="contact-strip">
+        <div class="contact-box">
+          <span>Orders WhatsApp</span>
+          <a href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">+20 12 79822194</a>
         </div>
-      </div>
-
-      <div class="menu-category" id="iced">
-        <div class="category-header">
-          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=700&auto=format&fit=crop" alt="Iced coffee">
-          <div>
-            <h2>Iced Coffee</h2>
-            <p>Cold espresso drinks built for sunny days and late nights.</p>
-          </div>
-        </div>
-
-        <div class="item-grid">
-          <article class="item-card">
-            <div class="item-top"><h3>Iced Americano</h3><b>Ask</b></div>
-            <p>Espresso over ice with a crisp coffee taste.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Americano." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Iced Latte</h3><b>Ask</b></div>
-            <p>Cold milk, espresso, and ice.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Iced Mocha</h3><b>Ask</b></div>
-            <p>Chocolate coffee served chilled.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Mocha." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Iced Spanish Latte</h3><b>Ask</b></div>
-            <p>Sweet creamy latte over ice.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Iced%20Spanish%20Latte." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-        </div>
-      </div>
-
-      <div class="menu-category" id="mojito">
-        <div class="category-header">
-          <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=700&auto=format&fit=crop" alt="Mojito drink">
-          <div>
-            <h2>Mojitos & Refreshers</h2>
-            <p>Colorful fruit refreshers with ice, mint, and sparkling energy.</p>
-          </div>
-        </div>
-
-        <div class="item-grid">
-          <article class="item-card">
-            <div class="item-top"><h3>Blue Berry Mojito</h3><b>60 EGP</b></div>
-            <p>Refreshing mojito with fresh blueberry flavor.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Blue%20Berry%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Strawberry Mojito</h3><b>Ask</b></div>
-            <p>Sweet strawberry refresher with mint and ice.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Strawberry%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Passion Fruit Mojito</h3><b>Ask</b></div>
-            <p>Tropical, bright, and refreshing.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Passion%20Fruit%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Green Apple Mojito</h3><b>Ask</b></div>
-            <p>Crisp apple flavor with a fresh cold finish.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Green%20Apple%20Mojito." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Lemon Mint</h3><b>Ask</b></div>
-            <p>Fresh lemon and mint blended for a clean chill.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Lemon%20Mint." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-        </div>
-      </div>
-
-      <div class="menu-category" id="dessert">
-        <div class="category-header">
-          <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=700&auto=format&fit=crop" alt="Waffle dessert">
-          <div>
-            <h2>Waffles & Desserts</h2>
-            <p>Sweet plates for sharing, finishing a drink, or treating yourself properly.</p>
-          </div>
-        </div>
-
-        <div class="item-grid">
-          <article class="item-card">
-            <div class="item-top"><h3>Oreo Waffle</h3><b>65 EGP</b></div>
-            <p>Crispy waffle topped with Oreo chocolate.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Oreo%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Chocolate Waffle</h3><b>Ask</b></div>
-            <p>Golden waffle covered with chocolate topping.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Chocolate%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Nutella Waffle</h3><b>Ask</b></div>
-            <p>Warm waffle with rich hazelnut chocolate.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Nutella%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
-          <article class="item-card">
-            <div class="item-top"><h3>Mix Waffle</h3><b>Ask</b></div>
-            <p>A loaded waffle with mixed toppings.</p>
-            <a class="order-link" href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Mix%20Waffle." target="_blank" rel="noopener">Order on WhatsApp</a>
-          </article>
+        <div class="contact-box">
+          <span>Complaints WhatsApp</span>
+          <a href="https://wa.me/201014021853?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20send%20a%20complaint." target="_blank" rel="noopener">+20 10 14021853</a>
         </div>
       </div>
     </section>
@@ -785,7 +693,267 @@
   </main>
 
   <footer>
-    <div class="container">Al Mistkawy Cafe - order online through WhatsApp.</div>
+    <div class="container">
+      Al Mistkawy Cafe - orders: +20 12 79822194 | complaints: +20 10 14021853
+    </div>
   </footer>
+
+  <script>
+    const orderPhone = "201279822194";
+    const menuImages = {
+      milk: "https://images.unsplash.com/photo-1553787499-6f9133860278?q=80&w=900&auto=format&fit=crop",
+      juice: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=900&auto=format&fit=crop",
+      icedCoffee: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=900&auto=format&fit=crop",
+      hotCoffee: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=900&auto=format&fit=crop",
+      smoothie: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?q=80&w=900&auto=format&fit=crop",
+      mojito: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=900&auto=format&fit=crop",
+      waffle: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=900&auto=format&fit=crop",
+      softDrink: "https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=900&auto=format&fit=crop",
+      addition: "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=900&auto=format&fit=crop",
+      cuisine: "https://images.unsplash.com/photo-1521305916504-4a1121188589?q=80&w=900&auto=format&fit=crop"
+    };
+
+    const menuData = [
+      {
+        id: "milk",
+        title: "Milk",
+        description: "Creamy milk mixes with fruit, chocolate, and dessert flavors.",
+        image: menuImages.milk,
+        items: [
+          ["Milk Kiwi", 80, "Fresh kiwi blended into a creamy milk drink."],
+          ["Milk Mango", 80, "Mango milk blend with a smooth tropical taste."],
+          ["Milk Oreo", 75, "Creamy Oreo milk shake with cookie flavor."],
+          ["Milk Passion Fruit", 70, "Sweet passion fruit mixed with chilled milk."],
+          ["Milk Vanilla", 70, "Classic vanilla milk drink."],
+          ["Milk Chocolate", 70, "Cold chocolate milk with a rich finish."],
+          ["Milk Blue Berry", 70, "Blueberry milk blend served chilled."],
+          ["Milk Peach", 70, "Peach milk drink with a soft fruity flavor."],
+          ["Milk Pineapple", 70, "Pineapple milk blend with a bright taste."],
+          ["Milk Strawberry", 70, "Strawberry milk drink, sweet and creamy."],
+          ["Milk Banana", 70, "Banana milk blend with a smooth texture."]
+        ]
+      },
+      {
+        id: "fresh-juice",
+        title: "Fresh Juice",
+        description: "Fresh fruit juices and milk-based juice blends.",
+        image: menuImages.juice,
+        items: [
+          ["Dates Milk", 45, "Dates blended with milk for a rich sweet drink."],
+          ["Guava Milk", 45, "Guava and milk blended smooth."],
+          ["Strawberry Milk", 45, "Fresh strawberry milk drink."],
+          ["Mango", 40, "Classic mango juice."],
+          ["Lemon Mint", 35, "Fresh lemon and mint served cold."],
+          ["Orange", 35, "Fresh orange juice."]
+        ]
+      },
+      {
+        id: "ice-coffee",
+        title: "Ice Coffee",
+        description: "Cold coffee drinks served over ice.",
+        image: menuImages.icedCoffee,
+        items: [
+          ["Ice Coffee", 60, "Cold coffee served over ice."],
+          ["Ice Latte", 60, "Espresso, milk, and ice."],
+          ["Ice Chocolate", 60, "Chilled chocolate drink."],
+          ["Ice Mocca", 65, "Cold mocha with coffee and chocolate."],
+          ["American Coffee", 55, "Iced American-style coffee."],
+          ["Frappuccino", 70, "Blended iced coffee drink."]
+        ]
+      },
+      {
+        id: "hot-drink",
+        title: "Hot Drink",
+        description: "Classic warm drinks, espresso, tea, and Turkish coffee.",
+        image: menuImages.hotCoffee,
+        items: [
+          ["Coffee Mix", 30, "Warm mixed coffee drink."],
+          ["Green Tea", 25, "Hot green tea."],
+          ["Tea", 10, "Classic hot tea."],
+          ["Nescafe", 25, "Hot instant coffee."],
+          ["Nescafe Milk", 35, "Nescafe mixed with milk."],
+          ["Mocha", 60, "Coffee, milk, and chocolate."],
+          ["Latte", 55, "Espresso with steamed milk."],
+          ["Cappuccino", 55, "Espresso with milk foam."],
+          ["Single Espresso", 30, "Single espresso shot."],
+          ["Double Espresso", 50, "Double espresso shot."],
+          ["Hazelnut Coffee", 40, "Coffee with hazelnut flavor."],
+          ["Turkish Coffee", 20, "Traditional Turkish coffee."],
+          ["Seasoned Turkish Coffee", 25, "Spiced Turkish coffee."],
+          ["Dark Turkish Coffee", 25, "Strong dark Turkish coffee."]
+        ]
+      },
+      {
+        id: "coffee-specials",
+        title: "Coffee Specials",
+        description: "Additional coffee selections from the printed menu.",
+        image: menuImages.hotCoffee,
+        items: [
+          ["Latte", 55, "Smooth espresso and milk."],
+          ["Cappuccino", 55, "Foamy espresso coffee."],
+          ["Nescafe Milk", 40, "Nescafe with milk."],
+          ["Espresso Single", 30, "Single espresso shot."],
+          ["Espresso Double", 50, "Double espresso shot."],
+          ["Nescafe Black", 30, "Black Nescafe coffee."],
+          ["Coffee Hazelnut", 40, "Hazelnut flavored coffee."],
+          ["French Coffee", 35, "French-style coffee."],
+          ["Turkish Coffee", 20, "Traditional Turkish coffee."],
+          ["Spiced Coffee", 25, "Coffee with warm spices."]
+        ]
+      },
+      {
+        id: "addition",
+        title: "Addition",
+        description: "Extras for drinks and desserts.",
+        image: menuImages.addition,
+        items: [
+          ["Syrup", 10, "Flavor syrup addition."],
+          ["Oreo", 15, "Oreo topping addition."],
+          ["Nutella", 25, "Nutella topping addition."],
+          ["Ice Cream", 15, "Ice cream scoop addition."],
+          ["Whipping Cream", 15, "Whipped cream topping."]
+        ]
+      },
+      {
+        id: "smothe",
+        title: "Smothe",
+        description: "Fruit smoothie selections from the PDF menu.",
+        image: menuImages.smoothie,
+        items: [
+          ["Smothe Mix", 60, "Mixed fruit smoothie."],
+          ["Smothe Strawberry", 50, "Strawberry smoothie."],
+          ["Smothe Water Melon", 50, "Watermelon smoothie."],
+          ["Smothe Peach", 50, "Peach smoothie."],
+          ["Smothe Mango", 50, "Mango smoothie."],
+          ["Smothe Pineapple", 50, "Pineapple smoothie."],
+          ["Smothe Blue Berry", 50, "Blueberry smoothie."],
+          ["Smothe Passion Fruit", 50, "Passion fruit smoothie."],
+          ["Smothe Lemon Mint", 50, "Lemon mint smoothie."]
+        ]
+      },
+      {
+        id: "mojito",
+        title: "Mojito",
+        description: "Sparkling fruit refreshers with ice and mint.",
+        image: menuImages.mojito,
+        items: [
+          ["Mojito Mix", 65, "Mixed fruit mojito."],
+          ["Mojito Strawberry", 60, "Strawberry mojito."],
+          ["Mojito Watermelon", 60, "Watermelon mojito."],
+          ["Mojito Peach", 60, "Peach mojito."],
+          ["Mojito Novel (Pomegranate)", 60, "Pomegranate mojito."],
+          ["Mojito Pineapple", 60, "Pineapple mojito."],
+          ["Mojito Blue Berry", 60, "Blueberry mojito."],
+          ["Mojito Kiwi", 60, "Kiwi mojito."]
+        ]
+      },
+      {
+        id: "waffle",
+        title: "Waffle",
+        description: "Golden waffles with chocolate, fruit, and pistachio toppings.",
+        image: menuImages.waffle,
+        items: [
+          ["Waffle Chocolate", 55, "Golden waffle with chocolate topping."],
+          ["Waffle Lotus", 65, "Waffle with Lotus biscuit flavor."],
+          ["Waffle Oreo", 65, "Waffle topped with Oreo."],
+          ["Waffle Banana", 65, "Waffle with banana topping."],
+          ["Waffle Mix Chocolate", 70, "Waffle with mixed chocolate toppings."],
+          ["Waffle Pistachio", 85, "Waffle topped with pistachio flavor."]
+        ]
+      },
+      {
+        id: "soft-drinks",
+        title: "Soft Drinks",
+        description: "Bottled and canned drinks.",
+        image: menuImages.softDrink,
+        items: [
+          ["Red Ball", 100, "Energy drink."],
+          ["Birell", 30, "Malt soft drink."],
+          ["Fairoz", 30, "Malt soft drink."],
+          ["Twiest", 25, "Soft drink."],
+          ["Cola", 30, "Cola soft drink."],
+          ["Pepsi", 30, "Pepsi soft drink."],
+          ["Sprite", 30, "Sprite soft drink."],
+          ["Sting", 25, "Energy soft drink."],
+          ["Water Small", 10, "Small water bottle."],
+          ["Water Large", 15, "Large water bottle."]
+        ]
+      },
+      {
+        id: "signature-cuisine",
+        title: "Signature Cuisine",
+        description: "Sandwiches, meals, potatoes, and quick plates from the printed menu.",
+        image: menuImages.cuisine,
+        items: [
+          ["كبدة صغير", 25, "Small liver sandwich."],
+          ["سجق صغير", 25, "Small sausage sandwich."],
+          ["شاورما صغير", 40, "Small shawarma sandwich."],
+          ["وجبة كبدة", 120, "Liver meal."],
+          ["وجبة شيش", 120, "Shish meal."],
+          ["وجبة استربس", 120, "Strips meal."],
+          ["مجدم بطاطس", 110, "Potato combo."],
+          ["دبل برجر بطاطس", 100, "Double burger with potatoes."],
+          ["تشيز برجر بطاطس", 80, "Cheese burger with potatoes."],
+          ["استربس", 60, "Chicken strips."],
+          ["شيش", 60, "Shish sandwich."],
+          ["هوت دوج", 40, "Hot dog."],
+          ["شاورما", 60, "Shawarma."],
+          ["كبدة", 40, "Liver sandwich."],
+          ["بطاطس", 25, "Potatoes."],
+          ["بطاطس موتزريلا", 35, "Potatoes with mozzarella."],
+          ["بانيه", 40, "Pane sandwich."]
+        ]
+      }
+    ];
+
+    const escapeHtml = (value) => String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+    const orderHref = (name, price) => {
+      const message = `Hello Al Mistkawy, I want to order ${name} - ${price} EGP.`;
+      return `https://wa.me/${orderPhone}?text=${encodeURIComponent(message)}`;
+    };
+
+    const categoryNav = document.getElementById("categoryNav");
+    const menuCategories = document.getElementById("menuCategories");
+    const menuCount = document.getElementById("menuCount");
+    const itemCount = menuData.reduce((total, category) => total + category.items.length, 0);
+
+    menuCount.textContent = `${itemCount} items available for WhatsApp ordering`;
+    categoryNav.innerHTML = menuData
+      .map((category) => `<a href="#${category.id}">${escapeHtml(category.title)}</a>`)
+      .join("") + '<a href="#pdf">PDF</a>';
+
+    menuCategories.innerHTML = menuData.map((category) => `
+      <div class="menu-category" id="${category.id}">
+        <div class="category-header">
+          <img src="${category.image}" alt="${escapeHtml(category.title)}">
+          <div>
+            <h2>${escapeHtml(category.title)}</h2>
+            <p>${escapeHtml(category.description)}</p>
+          </div>
+        </div>
+        <div class="item-grid">
+          ${category.items.map(([name, price, description]) => `
+            <article class="item-card">
+              <img src="${category.image}" alt="${escapeHtml(name)}">
+              <div class="item-body">
+                <div class="item-top">
+                  <h3>${escapeHtml(name)}</h3>
+                  <b>${price} EGP</b>
+                </div>
+                <p>${escapeHtml(description)}</p>
+                <a class="order-link" href="${orderHref(name, price)}" target="_blank" rel="noopener">Order on WhatsApp</a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </div>
+    `).join("");
+  </script>
 </body>
 </html>

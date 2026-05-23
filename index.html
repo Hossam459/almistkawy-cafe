@@ -258,6 +258,8 @@
     }
 
     .menu-card{
+      display:grid;
+      grid-template-rows:auto 1fr;
       background:linear-gradient(180deg,var(--panel-soft),var(--panel));
       border-radius:8px;
       overflow:hidden;
@@ -278,6 +280,8 @@
     }
 
     .menu-content{
+      display:grid;
+      grid-template-rows:auto 1fr auto auto;
       padding:25px;
     }
 
@@ -298,6 +302,27 @@
       font-size:20px;
       font-weight:bold;
       margin-top:10px;
+    }
+
+    .order-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      margin-top:18px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(37,211,102,0.14);
+      color:#7df0a8;
+      border:1px solid rgba(37,211,102,0.28);
+      font-size:14px;
+      font-weight:700;
+      transition:0.3s;
+    }
+
+    .order-link:hover{
+      background:#25d366;
+      color:#082113;
     }
 
     .about{
@@ -419,6 +444,19 @@
       color:#888;
     }
 
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .footer-links a{
+      color:var(--gold);
+      font-weight:700;
+    }
+
     footer h2{
       margin-bottom:20px;
       color:var(--gold);
@@ -501,7 +539,7 @@
 
       <div class="hero-actions">
         <a href="menu.html" class="btn">View Menu</a>
-        <a href="https://wa.me/?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn secondary">Order Now</a>
+        <a href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn secondary">Order Now</a>
       </div>
 
       <div class="hero-stats">
@@ -534,6 +572,7 @@
             <h3>Latte</h3>
             <p>Rich espresso with creamy milk foam.</p>
             <div class="price">55 EGP</div>
+            <a class="order-link" href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Latte%20-%2055%20EGP." target="_blank" rel="noopener">Order via WhatsApp</a>
           </div>
         </div>
 
@@ -544,6 +583,7 @@
             <h3>Blue Berry Mojito</h3>
             <p>Refreshing mojito with fresh blueberry flavor.</p>
             <div class="price">60 EGP</div>
+            <a class="order-link" href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Blue%20Berry%20Mojito%20-%2060%20EGP." target="_blank" rel="noopener">Order via WhatsApp</a>
           </div>
         </div>
 
@@ -554,6 +594,7 @@
             <h3>Oreo Waffle</h3>
             <p>Crispy waffle topped with Oreo chocolate.</p>
             <div class="price">65 EGP</div>
+            <a class="order-link" href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20order%20Oreo%20Waffle%20-%2065%20EGP." target="_blank" rel="noopener">Order via WhatsApp</a>
           </div>
         </div>
       </div>
@@ -621,6 +662,11 @@
   <footer id="contact">
     <div class="container">
       <h2>Follow Us @ELMISTKAWY.EG</h2>
+
+      <div class="footer-links">
+        <a href="https://wa.me/201279822194?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">Orders: +20 12 79822194</a>
+        <a href="https://wa.me/201014021853?text=Hello%20Al%20Mistkawy%2C%20I%20want%20to%20send%20a%20complaint." target="_blank" rel="noopener">Complaints: +20 10 14021853</a>
+      </div>
 
       <p>
         &copy; 2026 Al Mistkawy Cafe - All Rights Reserved
